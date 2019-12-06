@@ -1,0 +1,16 @@
+-- Drop all tables;
+--
+
+
+DROP TABLE IF EXISTS `CURRENCYRATES`;
+
+--
+-- Create for table `CURRENCYRATES`
+--
+CREATE TABLE `CURRENCYRATES` (
+  `CURRENCY_ID` bigint(20) NOT NULL,
+  `CURRENCY_NAME` varchar(50) NOT NULL,
+  `CURRENCY_RATE` double NOT NULL,
+  PRIMARY KEY (`CURRENCY_ID`)
+);
+

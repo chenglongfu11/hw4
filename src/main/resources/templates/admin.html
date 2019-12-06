@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body>
+
+<div id="div01" >Login Successuflly</div>
+<hr/>
+<section>
+
+    <table border="1" id="stuTable">
+        <tr>
+            <td>Currency Name</td>
+            <td>Currency Rate</td>
+        </tr>
+        <tr th:each="currency:${currencyList}" >
+            <td th:text="${currency.getCurrencyName()}">编号11</td>
+            <td th:text="${currency.getCurrencyRate()}">姓名11</td>
+        </tr>
+    </table>
+
+
+    <select name="currency exchange" >
+        <option th:each="currency: ${currencyList}" th:value="${currency.getCurrencyRate() }" th:text="${currency.getCurrencyName()}"></option>
+
+    </select>
+
+    <br>
+    <form th:action="@{/admins}" th:object="${adminInput}" method="post">
+        <p class="form">Follow "EUR TO USD", Set ExchangeCurrency as :<label>
+            <input type="text" th:field="*{currencyName}">
+        </label></p>
+        <p class="form">Set rate is :<label for="set-rate"></label><input type="text" th:field="*{currencyRate}" id="set-rate"/></p>
+        <p class="submit"><input type="submit" value="SET RATE"></p>
+
+    </form>
+
+
+
+</section>
+
+
+
+
+
+
+
+</body>
+</html>

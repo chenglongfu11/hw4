@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Currency exchange</title>
+</head>
+<body>
+
+
+<div id="div01" class="myDiv" >Please choose which currency to choose</div>
+
+<section>
+    <h1 style="background-color: darkorange; font-size: 30px;text-align: center">   Currency Exchange</h1>
+    <p class="info">Please choose what to exchange</p>
+<!--    <select name="currency exchange" >-->
+<!--        <option th:each="currency: ${currencyList}" th:value="${currency.getRate()}" th:text="${currency.getCurrencyName()}"></option>-->
+
+<!--    </select>-->
+    <form th:action="@{/amount-input}" th:object="${calculateMoney}" method="post">
+
+        <select name="currency exchange" th:field = "*{rate}">
+            <option th:each="currency: ${currencyList}" th:value="${currency.getCurrencyRate() }" th:text="${currency.getCurrencyName()}"></option>
+
+        </select>
+
+        <p class="form"><label for="create-acct-holder">Insert Amount
+            of money</label>:<input type="number" th:field="*{inputValue}" id="create-acct-holder"/>
+            <!--span class="error" th:if="${#fields.hasErrors('holderName')}" th:errors="*{holderName}">Input Value Error
+            </span></p>-->
+        <p th:text="'your results is '+${res}"></p>
+        <p class="submit"><input type="submit" value="EXCHANGE"/></p>
+
+    </form>
+    <!--form th:object="${showResult}" method="post"-->
+
+
+
+
+
+
+    <!--/--form-->
+</section>
+
+</body>
+</html>
