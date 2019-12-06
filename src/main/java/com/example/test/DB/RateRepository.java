@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
-public interface CurrencyRepository extends JpaRepository<Currency,Long> {
+public interface RateRepository extends JpaRepository<Rate,Long> {
 
-    Currency findCurrencyByCode(String code);
+    Rate findRateByFrommAndTo(String fromm, String to);
 
 }

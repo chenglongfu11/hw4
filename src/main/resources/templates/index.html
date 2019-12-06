@@ -18,17 +18,22 @@
 <!--    </select>-->
     <form th:action="@{/amount-input}" th:object="${calculateMoney}" method="post">
 
-        <select name="currency exchange" th:field = "*{rate}">
-            <option th:each="currency: ${currencyList}" th:value="${currency.getCurrencyRate() }" th:text="${currency.getCurrencyName()}"></option>
-
+        <select name="currency exchange" th:field = "*{fromCode}">
+            FROM: <option th:each="currency: ${currencyList}" th:value="${currency.getCode()}" th:text="${currency.getCode()}"></option>
         </select>
 
-        <p class="form"><label for="create-acct-holder">Insert Amount
-            of money</label>:<input type="number" th:field="*{inputValue}" id="create-acct-holder"/>
-            <!--span class="error" th:if="${#fields.hasErrors('holderName')}" th:errors="*{holderName}">Input Value Error
-            </span></p>-->
-        <p th:text="'your results is '+${res}"></p>
+        <select name="currency exchange" th:field = "*{toCode}">
+            TO: <option th:each="currency: ${currencyList}" th:value="${currency.getCode()}" th:text="${currency.getCode()}"></option>
+        </select>
+
+        <p class="form"><label for="create-acct-holder">Insert Amount of money</label>:<input type="number" step="0.01" th:field="*{inputValue}" id="create-acct-holder"/>
+            
         <p class="submit"><input type="submit" value="EXCHANGE"/></p>
+
+
+        <p th:text="${res lt 0} ? 'Input is invalid or rate is not defined' : 'your results is '+${res}"></p>
+        
+
 
     </form>
     <!--form th:object="${showResult}" method="post"-->

@@ -1,28 +1,61 @@
 package com.example.test;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.PositiveOrZero;
+
+import org.springframework.lang.NonNull;
+
 public class AdminInput {
 
-    private String currencyName;
-    private Double currencyRate;
+    @NonNull
+    @Pattern(regexp = "[A-Z]{3}")
+    private String fromCurrency;
+
+    @NonNull
+    @Pattern(regexp = "[A-Z]{3}")
+    private String toCurrency;
+    
+    @PositiveOrZero
+    @NonNull
+    private double rate;
 
     public AdminInput() {
     }
 
-
-    public String getCurrencyName() {
-        return currencyName;
+    /**
+     * @return the fromCurrency
+     */
+    public String getFromCurrency() {
+        return fromCurrency;
     }
 
-    public void setCurrencyName(String currencyName) {
-        this.currencyName = currencyName;
+    /**
+     * @return the toCurrency
+     */
+    public String getToCurrency() {
+        return toCurrency;
     }
 
-    public Double getCurrencyRate() {
-        return currencyRate;
+    /**
+     * @param fromCurrency the fromCurrency to set
+     */
+    public void setFromCurrency(String fromCurrency) {
+        this.fromCurrency = fromCurrency;
     }
 
-    public void setCurrencyRate(Double currencyRate) {
-        this.currencyRate = currencyRate;
+    /**
+     * @param toCurrency the toCurrency to set
+     */
+    public void setToCurrency(String toCurrency) {
+        this.toCurrency = toCurrency;
+    }
+
+    public Double getRate() {
+        return rate;
+    }
+
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
 
