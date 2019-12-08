@@ -8,14 +8,14 @@ import org.springframework.lang.NonNull;
 public class AdminInput {
 
     @NonNull
-    @Pattern(regexp = "[A-Z]{3}")
+    @Pattern(regexp = "[A-Z]{3}", message = "Please specify a legal currecny")
     private String fromCurrency;
 
     @NonNull
-    @Pattern(regexp = "[A-Z]{3}")
+    @Pattern(regexp = "[A-Z]{3}", message = "Please specify a legal currecny")
     private String toCurrency;
     
-    @PositiveOrZero
+    @PositiveOrZero(message = "Please input a positive number")
     @NonNull
     private double rate;
 

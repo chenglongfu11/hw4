@@ -15,21 +15,32 @@
             <td>From Currency</td>
             <td>To Currency</td>
             <td>Rate</td>
+            <td>Number of conversion</td>
         </tr>
         <tr th:each="rate:${rateList}" >
             <td th:text="${rate.getFromm()}">编号11</td>
             <td th:text="${rate.getTo()}">编号11</td>
             <td th:text="${rate.getRate()}">姓名11</td>
+            <td th:text="${rate.getConversion()}">0000</td>
         </tr>
     </table>
 
     <br>
     <form th:action="@{/admins}" th:object="${adminInput}" method="post">
         <p class="form">
-            From currency: <label> <input type="text" th:field="*{fromCurrency}"> </label>
-            To currency: <label> <input type="text" th:field="*{toCurrency}"> </label>
+            From currency <label>:<input type="text" th:field="*{fromCurrency}"> </label>
+                <span class="error" th:if="${#fields.hasErrors('fromCurrency')}"
+                    th:errors="*{fromCurrency}">Input Error</span>
+         </p>
+         <p>   To currency <label>: <input type="text" th:field="*{toCurrency}"> </label>
+                 <span class="error" th:if="${#fields.hasErrors('toCurrency')}"
+                          th:errors="*{toCurrency}">Input Error</span>
         </p>
-        <p class="form">Set rate is :<label for="set-rate"></label><input type="number" th:field="*{rate}" id="set-rate"/></p>
+        <p class="form">Set rate is :<label for="set-rate"></label><input type="number"
+                                                                          th:field="*{rate}" id="set-rate"/>
+            <span class="error" th:if="${#fields.hasErrors('rate')}"
+                  th:errors="*{rate}">Input Error</span>
+        </p>
         <p class="submit"><input type="submit" value="SET RATE"></p>
 
     </form>

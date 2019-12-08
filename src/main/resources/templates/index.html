@@ -26,12 +26,17 @@
             TO: <option th:each="currency: ${currencyList}" th:value="${currency.getCode()}" th:text="${currency.getCode()}"></option>
         </select>
 
-        <p class="form"><label for="create-acct-holder">Insert Amount of money</label>:<input type="number" step="0.01" th:field="*{inputValue}" id="create-acct-holder"/>
+        <p class="form"><label for="create-acct-holder">Insert Amount of money
+                </label>:<input type="number" step="0.01" th:field="*{inputValue}"
+                                id="create-acct-holder"/>
+            <span class="error" th:if="${#fields.hasErrors('inputValue')}"
+                  th:errors="*{inputValue}">Input Error</span>
+        </p>
             
         <p class="submit"><input type="submit" value="EXCHANGE"/></p>
 
 
-        <p th:text="${res lt 0} ? 'Input is invalid or rate is not defined' : 'your results is '+${res}"></p>
+        <span th:text="${testbo}? 'your results is '+${res}:''"></span>
         
 
 

@@ -47,6 +47,7 @@ public class CurrencyService {
     public double getRate(String from, String to){
         Rate rate = rateRepo.findRateByFrommAndTo(from, to);
         if(rate != null){
+            rate.setConversion();
             return rate.getRate();
         }
         return -1.0;
@@ -71,4 +72,9 @@ public class CurrencyService {
         List<RateDTO> list = (List<RateDTO>)(List<?>)rateRepo.findAll();
         return list;
     }
+
+
+
+
+
 }

@@ -2,10 +2,11 @@ package com.example.test;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 public class CalculateMoney {
-    
+    @NotNull(message = "Please specify amount")
     @PositiveOrZero(message = "Input value should be greater than 0")
     private double inputValue;
     

@@ -4,4 +4,5 @@ public interface RateDTO {
     double getRate();
     String getFromm();
     String getTo();
+    int getConversion();
 }

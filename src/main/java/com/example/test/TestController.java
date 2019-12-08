@@ -34,6 +34,8 @@ public class TestController {
 
         System.out.println(list);
         model.addAttribute("currencyList", list);
+        boolean testboolean = false;
+        model.addAttribute("testbo",testboolean);
         return "index";
     }
 
@@ -43,16 +45,23 @@ public class TestController {
         
         if(bindingResult.hasErrors()){
             model.addAttribute("currencyList",list);
-            model.addAttribute("res", -1.0);
+            //model.addAttribute("res", -1.0);
             return "index";
         }
 
         Double calculatedResults;
+        //Double calculatedResults=service.calculate(calculateMoney.getFromCode(),
+                       // calculateMoney.getToCode(),calculateMoney.getInputValue());
         double rate = service.getRate(calculateMoney.getFromCode(), calculateMoney.getToCode());
-        
+
+        boolean testboolean = false;
         calculateMoney.setRate(rate);
         calculatedResults = calculateMoney.MoneyCalculate();
-        
+        if(calculatedResults !=null){
+            testboolean = true;
+        }
+
+        model.addAttribute("testbo",testboolean);
         model.addAttribute("res", calculatedResults);
         model.addAttribute("currencyList",list);
         return "index";
@@ -70,11 +79,11 @@ public class TestController {
     }
 
     @PostMapping("/admins")
-    public String Admin(@Valid AdminInput adminInput, BindingResult bindingResult, Model model) throws Exception {
+    public String Admin(@Valid AdminInput adminInput, BindingResult bindingResult, Model model) {
 
         if(bindingResult.hasErrors()){
             List<RateDTO> rateList = service.getRates();
-            model.addAttribute("rateList", rateList);        
+            model.addAttribute("rateList", rateList);
             return "admin";
         }
 
@@ -88,8 +97,5 @@ public class TestController {
         return "admin";
     }
 
-    @ExceptionHandler(Exception.class)
-    public String handleExceptions(Exception ex) {
-        return ex.getMessage();
-    }
+
 }
