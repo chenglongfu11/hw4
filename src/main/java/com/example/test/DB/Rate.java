@@ -98,8 +98,8 @@ public class Rate implements RateDTO {
         this.conversion = conversion;
     }
 
-    public void setConversion(){
-        conversion = conversion+1;
+    public void updateConversion(){
+        conversion = conversion + 1;
     }
 
 

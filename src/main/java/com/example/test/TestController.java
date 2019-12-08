@@ -54,12 +54,10 @@ public class TestController {
                        // calculateMoney.getToCode(),calculateMoney.getInputValue());
         double rate = service.getRate(calculateMoney.getFromCode(), calculateMoney.getToCode());
 
-        boolean testboolean = false;
         calculateMoney.setRate(rate);
         calculatedResults = calculateMoney.MoneyCalculate();
-        if(calculatedResults !=null){
-            testboolean = true;
-        }
+        boolean testboolean = calculatedResults > 0.0;
+        
 
         model.addAttribute("testbo",testboolean);
         model.addAttribute("res", calculatedResults);
